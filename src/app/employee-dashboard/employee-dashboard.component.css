@@ -1,0 +1,22 @@
+.container{
+    width: 1024px;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+h1{
+    font-size: 24px;
+    color: #1e2139;
+}
+.nabbar-light button{
+    background-color: #1e2139;
+}
+thead tr, tbody td{
+    text-align: left;
+    width: 21%;
+}
+button{
+    margin-right: 5px;
+}
+.button-blue{
+    background-color: #252945;
+}

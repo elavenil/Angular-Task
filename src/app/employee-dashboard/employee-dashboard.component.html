@@ -1,0 +1,144 @@
+<nav class="navbar nabbar-light">
+  <div class="container">
+    <h1>POC</h1>
+    <div class="d-flex">
+      <button
+        type="button"
+        (click)="clickAddEmployee()"
+        class="btn btn-success"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+      >
+        Add New Task
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="container">
+<table class="table mt-3 text-center">
+  <thead>
+    <tr>
+      <th scope="col">Resource Name</th>
+      <th scope="col">Job Code</th>
+      <th scope="col">Task Description</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of employeeData">
+      <!-- <td>{{ emp.id }}</td> -->
+      <td>{{ emp.resourceName }}</td>
+      <td>{{ emp.jobCode }}</td>
+      <td>{{ emp.taskDescription }}</td>
+      <td>{{ emp.status }}</td>
+      <!--<td>{{ emp.salary }}</td> -->
+      <td>
+        <button
+          (click)="onEdit(emp)"
+          class="btn btn-success button-blue"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+        >
+          Edit
+        </button>
+        <button (click)="deleteEmployees(emp)" class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Task Detail</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue">
+          <div class="mb-3">
+            <label for="resourceName" class="form-label">Resource Name</label>
+            <input
+              type="text"
+              formControlName="resourceName"
+              class="form-control"
+              id="resourceName"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="jobCode" class="form-label">Job Code</label>
+            <input
+              type="text"
+              formControlName="jobCode"
+              class="form-control"
+              id="jobCode"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="taskDescription" class="form-label">Task Description</label>
+            <input
+              type="text"
+              formControlName="taskDescription"
+              class="form-control"
+              id="taskDescription"
+              
+            />
+          </div>
+          <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <input
+              type="text"
+              formControlName="status"
+              class="form-control"
+              id="status"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="cancel"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          *ngIf="showAdd"
+          class="btn btn-primary"
+          (click)="postEmployeeDetails()"
+        >
+          Add
+        </button>
+        <button
+          type="button"
+          *ngIf="showUpdate"
+          class="btn btn-primary"
+          (click)="updateEmployeeDetails()"
+        >
+          Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
